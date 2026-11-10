@@ -86,10 +86,12 @@ of the write-up.
 
 ## Build the data and train the baseline
 
-Code: [mdlARC](https://github.com/mvakde/mdlARC), branch `looped`.
+Code: [mdlARC](https://github.com/mvakde/mdlARC) (`main`, tag `v3-nov2026`).
+
+Baseline code (looped mdlARC, same as mdlARC `main` at tag `v3-nov2026`): `baseline/mdlarc/`
 
 ```bash
-git clone -b looped https://github.com/mvakde/mdlARC.git
+git clone https://github.com/mvakde/mdlARC.git
 cd mdlARC
 python dataset_building_scripts/download_and_group.py   # ARC-1, ARC-2, ConceptARC (and RE-ARC) at pinned commits
 
