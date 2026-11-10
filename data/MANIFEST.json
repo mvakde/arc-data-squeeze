@@ -1,0 +1,114 @@
+{
+  "files": {
+    "rearc/arc1/challenges.json": {
+      "sha256": "d8e1c84f30fdbac5a6d86d883a459f8c660d95ea8ac26b70651f0fad09929ea8",
+      "bytes": 5036997,
+      "tasks": 907,
+      "pairs": 3727,
+      "test_inputs": 419
+    },
+    "rearc/arc1/rearc_challenges.json": {
+      "sha256": "d62d0e1f95c68733f8e804a3736a01739db74d0bb947fb5e06489838fab545ad",
+      "bytes": 708259817,
+      "tasks": 400,
+      "pairs": 401589,
+      "test_inputs": 0
+    },
+    "rearc/arc1/solutions.json": {
+      "sha256": "629622b0eecf42c6cb4da628955ef76ec43214f0d00081f8cf63082ade496c52",
+      "bytes": 312989,
+      "tasks": 400,
+      "withheld_outputs": 419
+    },
+    "rearc/arc2/challenges.json": {
+      "sha256": "5596c3aa67b8cb6798fce2c4e770b419f9983ca773d57c5f3726f8cb6f11524f",
+      "bytes": 5126964,
+      "tasks": 907,
+      "pairs": 3979,
+      "test_inputs": 167
+    },
+    "rearc/arc2/rearc_challenges.json": {
+      "sha256": "d62d0e1f95c68733f8e804a3736a01739db74d0bb947fb5e06489838fab545ad",
+      "bytes": 708259817,
+      "tasks": 400,
+      "pairs": 401589,
+      "test_inputs": 0
+    },
+    "rearc/arc2/solutions.json": {
+      "sha256": "e8b49629e2683adb79b1d137b25fd0b6d87e4b7d81cc636d60c4c9f7d6888961",
+      "bytes": 218822,
+      "tasks": 120,
+      "withheld_outputs": 167
+    },
+    "main/arc1/challenges.json": {
+      "sha256": "d9bf319542ae39a776dbec4ce357d8dd98cbc50b6d97c2e7929d02e95fefb885",
+      "bytes": 6485906,
+      "tasks": 1307,
+      "pairs": 5445,
+      "test_inputs": 419
+    },
+    "main/arc1/solutions.json": {
+      "sha256": "629622b0eecf42c6cb4da628955ef76ec43214f0d00081f8cf63082ade496c52",
+      "bytes": 312989,
+      "tasks": 400,
+      "withheld_outputs": 419
+    },
+    "main/arc2/challenges.json": {
+      "sha256": "f2f15535ea89bff4e257830bd3767d189348e46550be925ed8f792a5bbe55db6",
+      "bytes": 6575873,
+      "tasks": 1307,
+      "pairs": 5697,
+      "test_inputs": 167
+    },
+    "main/arc2/solutions.json": {
+      "sha256": "e8b49629e2683adb79b1d137b25fd0b6d87e4b7d81cc636d60c4c9f7d6888961",
+      "bytes": 218822,
+      "tasks": 120,
+      "withheld_outputs": 167
+    },
+    "arc-only/arc1/challenges.json": {
+      "sha256": "338c88c8ab9875419e5fee95e4e15aab57dbba81b87e3fccf288010cad0d57e0",
+      "bytes": 5870249,
+      "tasks": 1147,
+      "pairs": 4538,
+      "test_inputs": 419
+    },
+    "arc-only/arc1/solutions.json": {
+      "sha256": "629622b0eecf42c6cb4da628955ef76ec43214f0d00081f8cf63082ade496c52",
+      "bytes": 312989,
+      "tasks": 400,
+      "withheld_outputs": 419
+    },
+    "arc-only/arc2/challenges.json": {
+      "sha256": "07e889f95bfa60d7f3dd95b0b84e45cff4a08d3d984f1692e316392bb7914bd7",
+      "bytes": 5960216,
+      "tasks": 1147,
+      "pairs": 4790,
+      "test_inputs": 167
+    },
+    "arc-only/arc2/solutions.json": {
+      "sha256": "e8b49629e2683adb79b1d137b25fd0b6d87e4b7d81cc636d60c4c9f7d6888961",
+      "bytes": 218822,
+      "tasks": 120,
+      "withheld_outputs": 167
+    }
+  },
+  "sources": {
+    "arc1": {
+      "url": "https://github.com/fchollet/ARC-AGI/archive/399030444e0ab0cc8b4e199870fb20b863846f34.zip",
+      "commit": "399030444e0ab0cc8b4e199870fb20b863846f34"
+    },
+    "arc2": {
+      "url": "https://github.com/arcprize/ARC-AGI-2/archive/f3283f727488ad98fe575ea6a5ac981e4a188e49.zip",
+      "commit": "f3283f727488ad98fe575ea6a5ac981e4a188e49"
+    },
+    "conceptarc": {
+      "url": "https://github.com/victorvikram/ConceptARC/archive/0e67da6af879e4bad3d7cd3c196e8d551b445725.zip",
+      "commit": "0e67da6af879e4bad3d7cd3c196e8d551b445725"
+    },
+    "rearc": {
+      "url": "https://raw.githubusercontent.com/michaelhodel/re-arc/e5b7f1d06362a76f9d3b8c25154ff1fafca897ce/re_arc.zip",
+      "commit": "e5b7f1d06362a76f9d3b8c25154ff1fafca897ce"
+    }
+  }
+}

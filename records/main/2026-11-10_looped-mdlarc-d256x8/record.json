@@ -1,0 +1,43 @@
+{
+  "name": "Looped mdlARC d256 ×8",
+  "authors": [
+    "Mithil Vakde"
+  ],
+  "github": [
+    "mvakde"
+  ],
+  "tier": "main",
+  "date": "2026-11-10",
+  "rules_version": 1,
+  "params": 8500000,
+  "summary": "d256 with the middle blocks looped 8 times.",
+  "code": {
+    "url": "https://github.com/mvakde/mdlARC",
+    "commit": "TODO: full SHA of tag v3.1-nov2026",
+    "command": "python launch_run.py --config specs/data_squeeze/arc2_d256x8.json"
+  },
+  "weights": null,
+  "declared_components": [],
+  "launch_entry": true,
+  "results": {
+    "arc1": null,
+    "arc2": {
+      "runs": [
+        {
+          "seed": 42,
+          "top2": 12.6389,
+          "oracle": 18.8889,
+          "dir": "arc2/seed42"
+        }
+      ],
+      "top2_mean": 12.6389,
+      "compute": {
+        "hardware": "1x H200 NVL",
+        "train_gpu_hours": 3.8,
+        "decode_gpu_hours": 0.3
+      },
+      "settings": "330 epochs, 80 decode views, leave-one-out demos",
+      "oracle_mean": 18.8889
+    }
+  }
+}

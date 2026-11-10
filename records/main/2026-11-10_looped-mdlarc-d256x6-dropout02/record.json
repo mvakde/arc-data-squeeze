@@ -1,0 +1,43 @@
+{
+  "name": "Looped mdlARC d256 ×6, dropout 0.2",
+  "authors": [
+    "Mithil Vakde"
+  ],
+  "github": [
+    "mvakde"
+  ],
+  "tier": "main",
+  "date": "2026-11-10",
+  "rules_version": 1,
+  "params": 8400000,
+  "summary": "The 8.4M baseline with dropout raised from 0.1 to 0.2.",
+  "code": {
+    "url": "https://github.com/mvakde/mdlARC",
+    "commit": "TODO: full SHA of tag v3.1-nov2026",
+    "command": "python launch_run.py --config specs/data_squeeze/arc1_d256x6.json with dropout 0.2"
+  },
+  "weights": null,
+  "declared_components": [],
+  "launch_entry": true,
+  "results": {
+    "arc1": {
+      "runs": [
+        {
+          "seed": 42,
+          "top2": 68.5,
+          "oracle": 76.125,
+          "dir": "arc1/seed42"
+        }
+      ],
+      "top2_mean": 68.5,
+      "compute": {
+        "hardware": "1x H200 NVL",
+        "train_gpu_hours": 2.1,
+        "decode_gpu_hours": 0.1
+      },
+      "settings": "330 epochs, 80 decode views, leave-one-out demos",
+      "oracle_mean": 76.125
+    },
+    "arc2": null
+  }
+}

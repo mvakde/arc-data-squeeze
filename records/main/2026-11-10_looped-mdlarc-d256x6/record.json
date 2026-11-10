@@ -1,0 +1,50 @@
+{
+  "name": "Looped mdlARC d256 ×6",
+  "authors": [
+    "Mithil Vakde"
+  ],
+  "github": [
+    "mvakde"
+  ],
+  "tier": "main",
+  "date": "2026-11-10",
+  "rules_version": 1,
+  "params": 8400000,
+  "summary": "The 8.4M quick-start baseline: d256 ×6 looped transformer with deep supervision.",
+  "code": {
+    "url": "https://github.com/mvakde/mdlARC",
+    "commit": "TODO: full SHA of tag v3.1-nov2026",
+    "command": "python launch_run.py --config specs/data_squeeze/arc1_d256x6.json"
+  },
+  "weights": null,
+  "declared_components": [],
+  "launch_entry": true,
+  "results": {
+    "arc1": {
+      "runs": [
+        {
+          "seed": 42,
+          "top2": 66.25,
+          "oracle": 77.25,
+          "dir": "arc1/seed42"
+        },
+        {
+          "seed": 43,
+          "top2": 62.0,
+          "oracle": 76.125,
+          "dir": "arc1/seed43"
+        }
+      ],
+      "top2_mean": 64.125,
+      "compute": {
+        "hardware": "1x H100 80GB (seed 42), 1x H200 NVL (seed 43)",
+        "train_gpu_hours": 2.6,
+        "decode_gpu_hours": 0.4
+      },
+      "settings": "330 epochs, 80 decode views, leave-one-out demos",
+      "oracle_mean": 76.6875,
+      "note": "Seed 42's predictions are a re-decode of its final checkpoint that saved candidates (same top-2 and oracle as the first decode). Seed 43 ran on later code with a faster decoder."
+    },
+    "arc2": null
+  }
+}

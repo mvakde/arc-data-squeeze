@@ -1,0 +1,44 @@
+{
+  "name": "Looped mdlARC d144 ×6",
+  "authors": [
+    "Mithil Vakde"
+  ],
+  "github": [
+    "mvakde"
+  ],
+  "tier": "main",
+  "date": "2026-11-10",
+  "rules_version": 1,
+  "params": 2011000,
+  "summary": "A 2.0M looped model.",
+  "code": {
+    "url": "https://github.com/mvakde/mdlARC",
+    "commit": "TODO: full SHA of tag v3.1-nov2026",
+    "command": "python launch_run.py --config specs/data_squeeze/arc1_d144x6.json"
+  },
+  "weights": null,
+  "declared_components": [],
+  "launch_entry": true,
+  "results": {
+    "arc1": {
+      "runs": [
+        {
+          "seed": 42,
+          "top2": 55.625,
+          "oracle": 68.0,
+          "dir": "arc1/seed42"
+        }
+      ],
+      "top2_mean": 55.625,
+      "compute": {
+        "hardware": "1x A100 80GB",
+        "train_gpu_hours": 3.8,
+        "decode_gpu_hours": 0.9
+      },
+      "settings": "330 epochs, 80 decode views, leave-one-out demos",
+      "oracle_mean": 68.0,
+      "note": "Older, slower code."
+    },
+    "arc2": null
+  }
+}

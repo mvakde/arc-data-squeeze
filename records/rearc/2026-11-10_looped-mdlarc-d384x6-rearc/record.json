@@ -1,0 +1,63 @@
+{
+  "name": "Looped mdlARC d384 ×6 + ReARC, scale augmentation, guards, likelihood ranking",
+  "authors": [
+    "Mithil Vakde"
+  ],
+  "github": [
+    "mvakde"
+  ],
+  "tier": "rearc",
+  "date": "2026-11-10",
+  "rules_version": 1,
+  "params": 18900000,
+  "summary": "The Main-tier record recipe trained with up to 1,000 ReARC examples per ARC-AGI-1 training task.",
+  "code": {
+    "url": "https://github.com/mvakde/mdlARC",
+    "commit": "TODO: full SHA of tag v3.1-nov2026",
+    "command": "python launch_run.py --config specs/paper/ (ReARC recipe)"
+  },
+  "weights": null,
+  "declared_components": [
+    "Symbolic guards from transductARC: task-agnostic checks that reject candidates whose colours or shape contradict the demos"
+  ],
+  "launch_entry": true,
+  "results": {
+    "arc1": {
+      "runs": [
+        {
+          "seed": 42,
+          "top2": 81.375,
+          "oracle": 88.0,
+          "dir": "arc1/seed42"
+        }
+      ],
+      "top2_mean": 81.375,
+      "compute": {
+        "hardware": "1x H200 NVL",
+        "train_gpu_hours": 9.4,
+        "decode_gpu_hours": 1.1
+      },
+      "settings": "330 epochs, 80 decode views, leave-one-out demos",
+      "oracle_mean": 88.0,
+      "note": "Plain votes score 78.75."
+    },
+    "arc2": {
+      "runs": [
+        {
+          "seed": 42,
+          "top2": 20.1389,
+          "oracle": 32.0833,
+          "dir": "arc2/seed42"
+        }
+      ],
+      "top2_mean": 20.1389,
+      "compute": {
+        "hardware": "1x H200 NVL",
+        "train_gpu_hours": 9.3,
+        "decode_gpu_hours": 0.6
+      },
+      "settings": "330 epochs, 80 decode views, leave-one-out demos",
+      "oracle_mean": 32.0833
+    }
+  }
+}

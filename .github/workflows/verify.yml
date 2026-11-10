@@ -1,0 +1,35 @@
+name: verify
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build and check the data (Main and ARC-only tiers)
+        run: |
+          python prepare_data.py --tier main
+          python prepare_data.py --tier arc-only
+      - name: Unit tests
+        run: |
+          pip install pytest
+          python -m pytest -q tests
+      - name: Verify record folders
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            base="origin/${{ github.base_ref }}"
+            dirs=$(git diff --name-only "$base"...HEAD -- records/ | cut -d/ -f1-3 | sort -u)
+          else
+            dirs=$(find records -mindepth 2 -maxdepth 2 -type d | sort)
+          fi
+          if [ -z "$dirs" ]; then echo "no record folders to verify"; exit 0; fi
+          python score.py --verify $dirs

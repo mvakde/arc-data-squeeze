@@ -1,0 +1,62 @@
+{
+  "name": "Looped mdlARC d384 ×6",
+  "authors": [
+    "Mithil Vakde"
+  ],
+  "github": [
+    "mvakde"
+  ],
+  "tier": "main",
+  "date": "2026-11-10",
+  "rules_version": 1,
+  "params": 18900000,
+  "summary": "d384 ×6 looped transformer with deep supervision; plain votes over 80 views.",
+  "code": {
+    "url": "https://github.com/mvakde/mdlARC",
+    "commit": "TODO: full SHA of tag v3.1-nov2026",
+    "command": "python launch_run.py --config specs/data_squeeze/arc1_d384x6.json and arc2_d384x6.json"
+  },
+  "weights": null,
+  "declared_components": [],
+  "launch_entry": true,
+  "results": {
+    "arc1": {
+      "runs": [
+        {
+          "seed": 42,
+          "top2": 68.375,
+          "oracle": null,
+          "dir": "arc1/seed42",
+          "oracle_logged": 79.625
+        }
+      ],
+      "top2_mean": 68.375,
+      "compute": {
+        "hardware": "1x H100 80GB",
+        "train_gpu_hours": 4.1,
+        "decode_gpu_hours": 0.5
+      },
+      "settings": "330 epochs, 80 decode views, leave-one-out demos",
+      "oracle_mean": 79.625,
+      "note": "The candidates of this decode were not saved; its oracle (79.625) comes from the run's own oracle report."
+    },
+    "arc2": {
+      "runs": [
+        {
+          "seed": 42,
+          "top2": 13.8889,
+          "oracle": 20.5556,
+          "dir": "arc2/seed42"
+        }
+      ],
+      "top2_mean": 13.8889,
+      "compute": {
+        "hardware": "1x H200 NVL",
+        "train_gpu_hours": 4.1,
+        "decode_gpu_hours": 0.3
+      },
+      "settings": "330 epochs, 80 decode views, leave-one-out demos",
+      "oracle_mean": 20.5556
+    }
+  }
+}
