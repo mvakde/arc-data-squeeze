@@ -5,7 +5,7 @@ title: "Challenge: <entry folder>"
 labels: challenge
 ---
 
-**Entry:** `records/<tier>/<folder>`
+**Entry:** `records/<track>/<folder>`
 
 **What is wrong:** <!-- rule broken, failed reproduction, data leak, ... -->
 

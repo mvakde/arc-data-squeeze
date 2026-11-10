@@ -5,10 +5,10 @@ A submission is a pull request that adds one folder. Maintainers then update the
 ## 1. Build the data and run your method
 
 ```bash
-python prepare_data.py --tier main        # or arc-only / rearc; it must end with "all files match"
+python prepare_data.py                    # it must end with "all files match"
 ```
 
-Train one model per benchmark on `data/<tier>/<benchmark>/challenges.json`, then predict the test inputs of the
+Train one model per benchmark on `data/main/<benchmark>/challenges.json`, then predict the test inputs of the
 evaluated tasks. These are the tasks with a `test` list in `challenges.json`, and the same IDs as
 `solutions.json`. For each run, write:
 
@@ -31,7 +31,7 @@ python score.py --benchmark arc1 runs/arc1-seed0/submission.json --candidates ru
 ## 2. Make the record folder
 
 ```
-records/<tier>/<YYYY-MM-DD>_<short-name>/
+records/<track>/<YYYY-MM-DD>_<short-name>/       <track>: main, or open for the Open table
   README.md                 what is new, how to reproduce, compute, anything unusual
   record.json               the machine-readable entry (below)
   arc1/seed0/submission.json
@@ -47,7 +47,7 @@ records/<tier>/<YYYY-MM-DD>_<short-name>/
   "name": "Looped transformer, d384 x6",
   "authors": ["Your Name"],
   "github": ["your-handle"],
-  "tier": "main",
+  "track": "main",
   "date": "2026-11-10",
   "rules_version": 1,
   "params": 18900000,
@@ -58,7 +58,7 @@ records/<tier>/<YYYY-MM-DD>_<short-name>/
     "command": "exact command(s) that train and decode one run"
   },
   "weights": "URL of the weights for at least one seed",
-  "declared_components": ["Anything hand-written and task-agnostic: a DSL, symbolic checks, ..."],
+  "declared_components": [],
   "results": {
     "arc1": {
       "runs": [{"seed": 0, "top2": 71.875, "oracle": 81.5, "dir": "arc1/seed0"}],
@@ -76,6 +76,8 @@ records/<tier>/<YYYY-MM-DD>_<short-name>/
 ```
 
 - `top2` and `oracle` are percentages as `score.py` prints them.
+- `declared_components` lists every data source and hand-written component beyond the rules ([RULES.md](RULES.md),
+  sections 1 and 2). It must be empty for a record; Open entries list what they add.
 - List every seed you ran with the final recipe.
 - If you only ran one benchmark, set the other to `null`. The entry is accepted, but a record should have both.
 
@@ -92,6 +94,6 @@ record, if any, you beat.
 ## What maintainers check
 
 - `score.py --verify` passes.
-- The code at the given commit runs the given command, and the data and protocol follow [RULES.md](RULES.md).
+- The code at the given commit runs the given command, and the data, priors and protocol follow [RULES.md](RULES.md).
 - For records: the weights load and, where feasible, a re-decode reproduces the predictions. Top entries are
   re-trained when compute allows.

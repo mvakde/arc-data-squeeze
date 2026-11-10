@@ -1,24 +1,26 @@
 {
-  "name": "Looped mdlARC d384 ×6 + ReARC, scale augmentation, guards, likelihood ranking",
+  "name": "Looped mdlARC d384 ×6 + ReARC, scale augmentation, deterministic filters, likelihood ranking",
   "authors": [
     "Mithil Vakde"
   ],
   "github": [
     "mvakde"
   ],
-  "tier": "rearc",
+  "track": "open",
   "date": "2026-11-10",
   "rules_version": 1,
   "params": 18900000,
-  "summary": "The Main-tier record recipe trained with up to 1,000 ReARC examples per ARC-AGI-1 training task.",
+  "summary": "d384 ×6 looped transformer trained on ARC-AGI, ConceptARC and up to 1,000 ReARC examples per ARC-AGI-1 training task, with scale augmentation; decoded with scale views, deterministic filters and likelihood ranking.",
   "code": {
     "url": "https://github.com/mvakde/mdlARC",
-    "commit": "TODO: full SHA of tag v3.1-nov2026",
-    "command": "python launch_run.py --config specs/paper/ (ReARC recipe)"
+    "commit": "aba27cacc21a9aeb47a0b29ad899b2b2f3240f72",
+    "command": "python launch_run.py --config specs/paper/rearc_and_scale/arc1_d384x6_rearc.json (arc2_d384x6_rearc.json for ARC-AGI-2)"
   },
   "weights": null,
   "declared_components": [
-    "Symbolic guards from transductARC: task-agnostic checks that reject candidates whose colours or shape contradict the demos"
+    "ReARC data: up to 1,000 pre-generated examples per ARC-AGI-1 training task (re-arc e5b7f1d), 129 known-bad pairs removed",
+    "Scale augmentation: integer block upscaling of every grid in a training sequence, and scale views at decode",
+    "Deterministic filters (transductARC's \"symbolic guards\"): task-agnostic checks that reject candidates whose colours or shape contradict the demos"
   ],
   "launch_entry": true,
   "results": {

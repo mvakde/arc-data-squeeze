@@ -3,7 +3,7 @@
 
     python score.py --benchmark arc1 submission.json
     python score.py --benchmark arc1 submission.json --candidates candidates.json.gz
-    python score.py --verify records/main/2026-11-10_looped-mdlarc-d384x6
+    python score.py --verify records/open/2026-11-10_looped-mdlarc-d384x6-rearc
 
 Top-2 (the ranked score) is the official ARC Prize metric. Each test input gets two attempts. A task scores the
 fraction of its test inputs where attempt_1 or attempt_2 equals the answer exactly. The total is the mean over
@@ -18,7 +18,7 @@ Accepted files (plain JSON or .json.gz):
   candidates   {task_id: [[grid, grid, ...], ... one list per test input]}, best first; or
                the looped mdlARC baseline's candidates.json.gz ({"format": 1, "pairs": [...]})
 
-Standard library only. Needs the solutions from `python prepare_data.py` (any tier: they are identical).
+Standard library only. Needs the solutions from `python prepare_data.py`.
 """
 
 from __future__ import annotations
@@ -31,7 +31,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 BENCHMARKS = {"arc1": "ARC-AGI-1", "arc2": "ARC-AGI-2"}
-TIERS = ("rearc", "main", "arc-only")
+TRACKS = ("main", "open")  # records, and interesting results outside the rules (RULES.md, section 9)
 MAX_CANDIDATES = 100
 TOLERANCE = 0.01  # percentage points allowed between a claimed and a re-scored number
 
@@ -44,10 +44,9 @@ def load(path: Path):
 
 
 def default_solutions(benchmark: str) -> Path:
-    for tier in ("main", *TIERS):
-        path = ROOT / "data" / tier / benchmark / "solutions.json"
-        if path.exists():
-            return path
+    path = ROOT / "data" / "main" / benchmark / "solutions.json"
+    if path.exists():
+        return path
     sys.exit(f"No solutions for {benchmark}. Run `python prepare_data.py` first, or pass --solutions.")
 
 
@@ -110,7 +109,7 @@ def score(solutions: dict, submission: dict, candidates: dict | None = None) -> 
 
 # ---------------------------------------------------------------- record verification
 
-REQUIRED = ("name", "authors", "tier", "date", "params", "code", "results")
+REQUIRED = ("name", "authors", "track", "date", "params", "code", "results")
 
 
 def verify(folder: Path, solutions_override: dict | None = None) -> list[str]:
@@ -126,10 +125,12 @@ def verify(folder: Path, solutions_override: dict | None = None) -> list[str]:
     for key in REQUIRED:
         if key not in meta:
             problems.append(f"record.json: '{key}' is missing")
-    if meta.get("tier") not in TIERS:
-        problems.append(f"record.json: tier must be one of {', '.join(TIERS)}")
-    if folder.parent.name != meta.get("tier"):
-        problems.append(f"folder is under records/{folder.parent.name}/ but tier is '{meta.get('tier')}'")
+    if meta.get("track") not in TRACKS:
+        problems.append(f"record.json: track must be one of {', '.join(TRACKS)}")
+    if folder.parent.name != meta.get("track"):
+        problems.append(f"folder is under records/{folder.parent.name}/ but track is '{meta.get('track')}'")
+    if meta.get("track") == "main" and meta.get("declared_components"):
+        problems.append("record.json: a record cannot declare components beyond the rules; put it under records/open/")
     code = meta.get("code") or {}
     for key in ("url", "commit", "command"):
         if not code.get(key):
@@ -187,7 +188,7 @@ def main() -> int:
     ap.add_argument("submission", nargs="?", type=Path)
     ap.add_argument("--benchmark", choices=BENCHMARKS)
     ap.add_argument("--candidates", type=Path)
-    ap.add_argument("--solutions", type=Path, help="default: data/<tier>/<benchmark>/solutions.json")
+    ap.add_argument("--solutions", type=Path, help="default: data/main/<benchmark>/solutions.json")
     ap.add_argument("--verify", nargs="+", type=Path, metavar="RECORD_DIR")
     ap.add_argument("--json", action="store_true", help="print machine-readable output")
     args = ap.parse_args()

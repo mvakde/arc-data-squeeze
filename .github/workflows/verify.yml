@@ -15,10 +15,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Build and check the data (Main and ARC-only tiers)
-        run: |
-          python prepare_data.py --tier main
-          python prepare_data.py --tier arc-only
+      - name: Build and check the data
+        run: python prepare_data.py
       - name: Unit tests
         run: |
           pip install pytest

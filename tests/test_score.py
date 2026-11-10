@@ -42,16 +42,16 @@ def test_unknown_tasks_warn():
     assert "warning" in got and got["top2"] == 0
 
 
-def _record(tmp_path, top2, oracle, launch=False):
-    folder = tmp_path / "records" / "main" / "2026-01-01_test"
+def _record(tmp_path, top2, oracle, track="main", declared=None):
+    folder = tmp_path / "records" / track / "2026-01-01_test"
     run = folder / "arc1" / "seed0"
     run.mkdir(parents=True)
     (folder / "README.md").write_text("# test\n")
     (run / "submission.json").write_text(json.dumps(
         {"t1": [{"attempt_1": A, "attempt_2": A}], "t2": [{"attempt_1": A, "attempt_2": B}, {}]}))
     (run / "candidates.json").write_text(json.dumps({"t2": [[A], [B]], "t3": [[C]]}))
-    meta = {"name": "t", "authors": ["x"], "tier": "main", "date": "2026-01-01", "params": 1,
-            "code": {"url": "u", "commit": "c", "command": "x"},
+    meta = {"name": "t", "authors": ["x"], "track": track, "date": "2026-01-01", "params": 1,
+            "code": {"url": "u", "commit": "c", "command": "x"}, "declared_components": declared or [],
             "results": {"arc1": {"runs": [{"seed": 0, "top2": top2, "oracle": oracle, "dir": "arc1/seed0"}],
                                  "top2_mean": top2, "compute": {"hardware": "1x CPU"}}, "arc2": None}}
     (folder / "record.json").write_text(json.dumps(meta))
@@ -67,6 +67,13 @@ def test_verify_rejects_wrong_claim(tmp_path):
     folder = _record(tmp_path, top2=60.0, oracle=66.6667)
     problems = score.verify(folder, {"arc1": SOLUTIONS})
     assert any("top2 claimed 60.0" in p for p in problems)
+
+
+def test_declared_components_only_outside_records(tmp_path):
+    main = _record(tmp_path / "a", top2=50.0, oracle=66.6667, declared=["deterministic filters"])
+    assert any("records/open/" in p for p in score.verify(main, {"arc1": SOLUTIONS}))
+    opened = _record(tmp_path / "b", top2=50.0, oracle=66.6667, track="open", declared=["deterministic filters"])
+    assert score.verify(opened, {"arc1": SOLUTIONS}) == []
 
 
 if __name__ == "__main__":

@@ -1,20 +1,20 @@
 {
-  "name": "Looped mdlARC d384 ×6",
+  "name": "Looped mdlARC v3, d384 ×6",
   "authors": [
     "Mithil Vakde"
   ],
   "github": [
     "mvakde"
   ],
-  "tier": "main",
+  "track": "main",
   "date": "2026-11-10",
   "rules_version": 1,
   "params": 18900000,
-  "summary": "d384 ×6 looped transformer with deep supervision; plain votes over 80 views.",
+  "summary": "d384 ×6 looped transformer with deep supervision; 80 views, top 20 voted candidates ranked by the model's likelihood.",
   "code": {
     "url": "https://github.com/mvakde/mdlARC",
-    "commit": "TODO: full SHA of tag v3.1-nov2026",
-    "command": "python launch_run.py --config specs/data_squeeze/arc1_d384x6.json and arc2_d384x6.json"
+    "commit": "aba27cacc21a9aeb47a0b29ad899b2b2f3240f72",
+    "command": "python launch_run.py --config specs/data_squeeze/arc1_d384x6.json (arc2_d384x6.json for ARC-AGI-2), then the likelihood rescore of the saved candidates, as in specs/paper/rearc_and_scale/arc1_d384x6_rescore_eval.json"
   },
   "weights": null,
   "declared_components": [],
@@ -24,39 +24,39 @@
       "runs": [
         {
           "seed": 42,
-          "top2": 68.375,
-          "oracle": null,
-          "dir": "arc1/seed42",
-          "oracle_logged": 79.625
+          "top2": 70.25,
+          "oracle": 79.875,
+          "dir": "arc1/seed42"
         }
       ],
-      "top2_mean": 68.375,
+      "top2_mean": 70.25,
       "compute": {
         "hardware": "1x H100 80GB",
         "train_gpu_hours": 4.1,
-        "decode_gpu_hours": 0.5
+        "decode_gpu_hours": 0.8
       },
-      "settings": "330 epochs, 80 decode views, leave-one-out demos",
-      "oracle_mean": 79.625,
-      "note": "The candidates of this decode were not saved; its oracle (79.625) comes from the run's own oracle report."
+      "settings": "330 epochs, 80 decode views, leave-one-out demos; top 20 voted candidates ranked by likelihood",
+      "oracle_mean": 79.875,
+      "note": "Candidates from a re-decode of the same checkpoint (plain votes 68.375 / 79.875); likelihood ranking took 0.33 GPU-hours. The original decode scored 68.375 by votes."
     },
     "arc2": {
       "runs": [
         {
           "seed": 42,
-          "top2": 13.8889,
+          "top2": 15.1389,
           "oracle": 20.5556,
           "dir": "arc2/seed42"
         }
       ],
-      "top2_mean": 13.8889,
+      "top2_mean": 15.1389,
       "compute": {
         "hardware": "1x H200 NVL",
         "train_gpu_hours": 4.1,
-        "decode_gpu_hours": 0.3
+        "decode_gpu_hours": 0.65
       },
-      "settings": "330 epochs, 80 decode views, leave-one-out demos",
-      "oracle_mean": 20.5556
+      "settings": "330 epochs, 80 decode views, leave-one-out demos; top 20 voted candidates ranked by likelihood",
+      "oracle_mean": 20.5556,
+      "note": "Plain votes score 13.889. Likelihood ranking took 0.35 GPU-hours."
     }
   }
 }
