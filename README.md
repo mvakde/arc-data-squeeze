@@ -133,7 +133,6 @@ than compute keeps the GPU-poor in the game: one small model run is enough to co
 
 - Write-up: [Looped mdlARC](https://mvakde.github.io/blog/looped-mdlarc/)
 - Baseline code: [mvakde/mdlARC](https://github.com/mvakde/mdlARC)
-- Baseline weights: [Kaggle model mithilavakde/mdlarc](https://www.kaggle.com/models/mithilavakde/mdlarc)
 - Questions and proposals: [issues](https://github.com/mvakde/arc-data-squeeze/issues)
 
 Cite with [CITATION.cff](CITATION.cff). Licence: [MIT-0](LICENSE). The ARC-AGI, ConceptARC and ReARC data keep
