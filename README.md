@@ -42,6 +42,20 @@ The extra knowledge and data pays off. Looped mdlARC v3 score increases from 70.
 
 Costs are what the author paid, except those marked †: a measured H200 run priced at $3.60 per hour on Vast. For v3 that is a d384 ×6 run on the current code; the recorded run used older code (4.9 H100-hours).
 
+## Ideas to try
+
+Big ideas rarely set a record on day one, so interesting non-record results are welcome too. Some directions:
+
+- **Recurrence through time and latent prediction:** the [full-bandwidth transformer](https://arxiv.org/abs/2608.08888), [recirculation](https://arxiv.org/abs/2608.17981), time loops, next-latent prediction.
+- **H-Nets with looping:** H-Nets helped in my tests, but I couldn't make them work with looping.
+- **Compressed or hierarchical attention:** MLA, CSA, HCA.
+- **Diffusion-style models.**
+- **Ensembling:** pooling the decodes of several models works well; ensembling during training hasn't been tried with loops.
+- **Much deeper models.**
+- **Other looping schemes:** loop the whole model, only the middle (as v3 does) or only the late blocks, or start looping late in training.
+- **Hyperparameter sweeps and a modern architecture,** e.g. three linear-attention layers per full-attention layer, or mHC. I didn't have the compute to do these properly, which is part of why this is open.
+- **Wilder changes,** if they help models learn more from each example.
+
 ## Rules
 
 Full text: [RULES.md](RULES.md).
@@ -74,20 +88,6 @@ Hand-written knowledge about ARC raises scores easily, so the rules allow only w
 - **DSLs, program search and symbolic solvers.**
 
 The maintainer decides borderline cases with the same test: would a person know this before working anything out from the grids? If you are unsure, ask in an issue before building on it.
-
-## Ideas to try
-
-Big ideas rarely set a record on day one. They first show signs of life, and the tuning comes later, so entries that don't beat the record but show something interesting are welcome too. Here is what we would like to see, with what we know so far:
-
-- **Recurrence through time and latent prediction.** Pass hidden states on to the next step, as the [full-bandwidth transformer](https://arxiv.org/abs/2608.08888) and [recirculation](https://arxiv.org/abs/2608.17981) do, or predict latents instead of tokens. In one small test, next-latent prediction lost to multi-token prediction.
-- **H-Nets with looping.** On their own, H-Nets matched or slightly beat plain transformers of equal depth. Our one attempt to combine them with looping scored 58.5 on ARC-AGI-1, against 66.25 without them.
-- **Compressed and hierarchical attention**, such as MLA, or the CSA and HCA layers of DeepSeek V4.
-- **Diffusion-style models** that refine the whole output grid together instead of writing it cell by cell.
-- **Ensembling.** Pooling the answers of five looped models raised ARC-AGI-1 from 68.38 to 73.12, though we chose the members on the eval set. Ensembling during training, such as weight averaging or distillation, hasn't been tried with loops. An ensemble's parameter count includes every member.
-- **Much deeper models.** Our gains from looping stop at ×6: looping ×8, or 12 blocks looped to 48 layers, did no better. transductARC kept gaining up to 32 layers. Making deep models train well on little data is open.
-- **Other looping schemes.** Loop the whole model, only the middle blocks (as v3 does) or only the late ones, or switch looping on partway through training.
-- **Proper hyperparameter sweeps and a modern architecture.** The baseline has never been swept properly. Try, for example, three linear-attention layers to each full-attention layer, as in Qwen3-Next and Kimi Linear, or DeepSeek's manifold-constrained hyper-connections (mHC).
-- **Wilder changes.** Anything goes if the model learns more from each example.
 
 ## Harder tracks to come
 
