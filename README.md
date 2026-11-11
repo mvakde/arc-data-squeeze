@@ -26,23 +26,19 @@ Top-2 / oracle, %. Top-2 is the ranked score; the oracle is reported for referen
 
 ### Open
 
-We also keep an Open table that relaxes the rules: interesting results that break a rule, usually hand-written knowledge or extra data. They show what the rules hold back, and they are not records.
+We also keep an Open table that relaxes the rules: interesting results that break a rule, usually hand-written knowledge or extra data. They show what the rules hold back, and they are not records. Open entries need public code.
 
 | Date | Entry | Params | Beyond the rules | ARC-AGI-1 | ARC-AGI-2 | Compute per ARC-AGI-1 run |
 | --- | --- | ---: | --- | --- | --- | --- |
 | Feb 2026 | [LoopViT](https://github.com/WenjieShu/LoopViT) (Shu et al.): looped vision transformer with test-time training | 18M | Extra data: ReARC | 65.8\* | 14.2\* | not reported |
-| Jun 2026 | [Loop-OWM](https://arxiv.org/abs/2606.12316) (Gao, Schölkopf and Geiger): looped object-centric transition model with test-time training | 10.6M ‡ | Extra data: ReARC, plus ARC-GEN for ARC-AGI-2, starting from the ARC-AGI-1 model. Also scale and translation augmentation | 68.5\* | 22.5\* | not reported (trained on 4×H200) |
-| Jul 2026 | [rekursiv.ai](https://rekursiv.ai/blog/pushing-limits-arc-agi/): TRM improved by an automated research system; no public code | 7M ‡ | Scale and translation augmentation | 71.4\* | 17.5\* | not reported |
 | Sep 2026 | [transductARC](https://github.com/kschweig/transductARC) by Kajetan Schweighofer, built on mdlARC | 75M | Extra data: ReARC. Also scale augmentation, deterministic filters | 76\* / 83\* | 17\* / 24\* | a little over 4 H100-hours\* |
 | Nov 2026 | [Looped mdlARC v3 + ReARC, scale augmentation, deterministic filters](records/open/2026-11-10_looped-mdlarc-d384x6-rearc) | 19M | Extra data: ReARC. Also scale augmentation, deterministic filters (as transductARC) | 81.38 / 88.00 | 20.14 / 32.08 | 10.6 H200-hours, ~$38 † |
 
 The extra knowledge and data pays off. Looped mdlARC v3 score increases from 70.25% on ARC-AGI-1 to 81.38%. 
 
-\* As reported by the authors, not re-scored here. transductARC's scores are a mean over 8 seeds, with the oracle over 48 candidates; its 8-model ensemble reports about 80 and 22. LoopViT, Loop-OWM and rekursiv.ai report top-2 only. Loop-OWM's scores are a mean over 5 runs (its 64×64-canvas setup); LoopViT doesn't describe its ARC-AGI-2 training data. rekursiv.ai chose its ARC-AGI-1 recipe over 235 runs scored on the public evaluation set, and its 5-model ensemble reports 75.5 on ARC-AGI-1.
+\* As reported by the authors, not re-scored here. transductARC's scores are a mean over 8 seeds, with the oracle over 48 candidates; its 8-model ensemble reports about 80 and 22. LoopViT reports top-2 only and doesn't describe its ARC-AGI-2 training data.
 
 Costs are what the author paid, except those marked †: a measured H200 run priced at $3.60 per hour on Vast. For v3 that is a d384 ×6 run on the current code; the recorded run used older code (4.9 H100-hours).
-
-‡ Loop-OWM's count leaves out a per-task table (about 2M parameters for ARC-AGI-2). rekursiv.ai's follows TRM's count, which leaves out TRM's per-puzzle embeddings; the post doesn't say whether they were kept.
 
 ## Rules
 
