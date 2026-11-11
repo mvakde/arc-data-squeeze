@@ -2,7 +2,7 @@
 
 d384 ×6 looped transformer trained on ARC-AGI, ConceptARC and up to 1,000 ReARC examples per ARC-AGI-1 training task, with scale augmentation; decoded with scale views, deterministic filters and likelihood ranking.
 
-Launch entry from the [looped mdlARC write-up](https://mvakde.github.io/blog/looped-mdlarc/). The predictions come from the write-up's runs, made with the research code; the public [mdlARC](https://github.com/mvakde/mdlARC) `reproduction` branch at `aba27ca` carries the recipe.
+Launch entry from the [looped mdlARC write-up](https://mvakde.github.io/blog/looped-mdlarc/). The predictions come from the write-up's runs, made with the research code; the public [mdlARC](https://github.com/mvakde/mdlARC) release [`v3.1-nov2026`](https://github.com/mvakde/mdlARC/releases/tag/v3.1-nov2026) carries the recipe.
 
 | Benchmark | Seed | Top-2 | Oracle | Hardware | Train + decode (h) |
 | --- | ---: | ---: | ---: | --- | --- |
@@ -19,4 +19,4 @@ Beyond the rules (listed in the Open table, not a record):
 - Deterministic filters (transductARC's "symbolic guards"): task-agnostic checks that reject candidates whose colours or shape contradict the demos.
 - ReARC data: up to 1,000 pre-generated examples per ARC-AGI-1 training task, 129 known-bad pairs removed.
 
-Reproduce: `python launch_run.py --config specs/paper/rearc_and_scale/arc1_d384x6_rearc.json (arc2_d384x6_rearc.json for ARC-AGI-2)` in mdlARC at commit `aba27cacc21a9aeb47a0b29ad899b2b2f3240f72`. Weights: to be published.
+Reproduce: `python launch_run.py --config specs/paper/rearc_and_scale/arc1_d384x6_rearc.json (arc2_d384x6_rearc.json for ARC-AGI-2)` in mdlARC at tag `v3.1-nov2026`, commit `79fc7bbd8fb7cc109cc9326cb5601b436a94cc75`. Weights: to be published.

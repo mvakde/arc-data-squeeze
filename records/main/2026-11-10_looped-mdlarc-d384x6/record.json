@@ -13,8 +13,8 @@
   "summary": "d384 ×6 looped transformer with deep supervision; 80 views, top 20 voted candidates ranked by the model's likelihood.",
   "code": {
     "url": "https://github.com/mvakde/mdlARC",
-    "commit": "aba27cacc21a9aeb47a0b29ad899b2b2f3240f72",
-    "command": "python launch_run.py --config specs/data_squeeze/arc1_d384x6.json (arc2_d384x6.json for ARC-AGI-2), then the likelihood rescore of the saved candidates, as in specs/paper/rearc_and_scale/arc1_d384x6_rescore_eval.json"
+    "commit": "79fc7bbd8fb7cc109cc9326cb5601b436a94cc75",
+    "command": "python launch_run.py --config specs/data_squeeze/arc1_d384x6.json (arc2_d384x6.json for ARC-AGI-2)"
   },
   "weights": null,
   "declared_components": [],

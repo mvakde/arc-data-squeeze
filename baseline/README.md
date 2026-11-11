@@ -5,24 +5,22 @@ scratch on the challenge data, with deep supervision on every loop pass. It deco
 augmented views and votes for the top two answers. The [write-up](https://mvakde.github.io/blog/looped-mdlarc/)
 explains the method and its ablations.
 
-Code: [mvakde/mdlARC](https://github.com/mvakde/mdlARC), branch `reproduction` at commit
-`aba27cacc21a9aeb47a0b29ad899b2b2f3240f72`.
-<!-- TODO: switch to the v3.1-nov2026 tag and its SHA once it exists, and make likelihood ranking ("inference_rescore":
-true) the default in specs/data_squeeze/arc1_d384x6.json and arc2_d384x6.json. -->
+Code: [mvakde/mdlARC](https://github.com/mvakde/mdlARC), release
+[`v3.1-nov2026`](https://github.com/mvakde/mdlARC/releases/tag/v3.1-nov2026) (commit
+`79fc7bbd8fb7cc109cc9326cb5601b436a94cc75`).
 
 ## Run it
 
 ```bash
-git clone --branch reproduction https://github.com/mvakde/mdlARC.git && cd mdlARC
-git checkout aba27cacc21a9aeb47a0b29ad899b2b2f3240f72
+git clone --branch v3.1-nov2026 https://github.com/mvakde/mdlARC.git && cd mdlARC
 pip install -r requirements.txt
 python dataset_building_scripts/download_and_group.py
 python launch_run.py --config specs/data_squeeze/arc1_d384x6.json      # ARC-AGI-1
 python launch_run.py --config specs/data_squeeze/arc2_d384x6.json      # ARC-AGI-2
 ```
 
-The record ranks the top 20 voted candidates by the model's likelihood. At this commit that is off by default: add
-`"inference_rescore": true` to the spec's `eval_defaults` to switch it on.
+The record ranks the top 20 voted candidates by the model's likelihood. Both d384 ×6 specs do this during decoding;
+the same decode also writes the plain-vote score.
 
 The launcher builds the challenge data itself, from the same pinned sources and with the same tasks and pairs as
 `prepare_data.py`. To train on this repo's files instead, copy `data/main/<benchmark>/{challenges,solutions}.json`

@@ -13,7 +13,7 @@
   "summary": "d384 ×6 looped transformer trained on ARC-AGI, ConceptARC and up to 1,000 ReARC examples per ARC-AGI-1 training task, with scale augmentation; decoded with scale views, deterministic filters and likelihood ranking.",
   "code": {
     "url": "https://github.com/mvakde/mdlARC",
-    "commit": "aba27cacc21a9aeb47a0b29ad899b2b2f3240f72",
+    "commit": "79fc7bbd8fb7cc109cc9326cb5601b436a94cc75",
     "command": "python launch_run.py --config specs/paper/rearc_and_scale/arc1_d384x6_rearc.json (arc2_d384x6_rearc.json for ARC-AGI-2)"
   },
   "weights": null,
