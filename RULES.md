@@ -109,6 +109,6 @@ generated data, no LLM calls at test time. You may use them as coding assistants
 ## 9. The Open table
 
 Interesting results that break sections 1 or 2, for example with extra data or hand-written knowledge, can be listed
-in the README's Open table. They are not records. Submit them under `records/open/` like any entry, and list every
-data source and hand-written component beyond these rules in `declared_components`. Sections 3 to 5 still apply:
+in the README's Open table. They are not records. Open entries need public code. Submit them under `records/open/`
+like any entry, and list every data source and hand-written component beyond these rules in `declared_components`. Sections 3 to 5 still apply:
 no evaluation test outputs, separate models per benchmark trained from scratch, and no LLMs or pretrained models.
