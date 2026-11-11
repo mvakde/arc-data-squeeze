@@ -9,7 +9,7 @@ Launch entry from the [looped mdlARC write-up](https://mvakde.github.io/blog/loo
 | ARC-AGI-1 | 42 | 81.375 | 88.000 | 1x H200 NVL | 9.4 + 1.1 |
 | ARC-AGI-2 | 42 | 20.139 | 32.083 | 1x H200 NVL | 9.3 + 0.6 |
 
-Parameters: 18,900,000. Training: 330 epochs on the challenge data plus ReARC, 80 views at decode.
+Parameters: 18,954,305. Training: 330 epochs on the challenge data plus ReARC, 80 views at decode.
 
 ARC-AGI-1: plain votes, without filters or likelihood ranking, score 78.75.
 

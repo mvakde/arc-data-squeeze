@@ -9,7 +9,7 @@ Launch entry from the [looped mdlARC write-up](https://mvakde.github.io/blog/loo
 | ARC-AGI-1 | 42 | 70.250 | 79.875 | 1x H100 80GB | 4.1 + 0.8 |
 | ARC-AGI-2 | 42 | 15.139 | 20.556 | 1x H200 NVL | 4.1 + 0.65 |
 
-Parameters: 18,900,000. Training: 330 epochs on the challenge data. Decoding: 80 views, then the top 20 voted candidates ranked by the model's likelihood. Plain votes score 68.375 (ARC-AGI-1) and 13.889 (ARC-AGI-2).
+Parameters: 18,954,305. Training: 330 epochs on the challenge data. Decoding: 80 views, then the top 20 voted candidates ranked by the model's likelihood. Plain votes score 68.375 (ARC-AGI-1) and 13.889 (ARC-AGI-2).
 
 ARC-AGI-1: Candidates from a re-decode of the same checkpoint (plain votes 68.375 / 79.875); likelihood ranking took 0.33 GPU-hours. The original decode scored 68.375 by votes.
 

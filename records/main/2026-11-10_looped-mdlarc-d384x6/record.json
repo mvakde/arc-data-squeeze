@@ -9,7 +9,7 @@
   "track": "main",
   "date": "2026-11-10",
   "rules_version": 1,
-  "params": 18900000,
+  "params": 18954305,
   "summary": "d384 ×6 looped transformer with deep supervision; 80 views, top 20 voted candidates ranked by the model's likelihood.",
   "code": {
     "url": "https://github.com/mvakde/mdlARC",

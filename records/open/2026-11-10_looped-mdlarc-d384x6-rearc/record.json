@@ -9,7 +9,7 @@
   "track": "open",
   "date": "2026-11-10",
   "rules_version": 1,
-  "params": 18900000,
+  "params": 18954305,
   "summary": "d384 ×6 looped transformer trained on ARC-AGI, ConceptARC and up to 1,000 ReARC examples per ARC-AGI-1 training task, with scale augmentation; decoded with scale views, deterministic filters and likelihood ranking.",
   "code": {
     "url": "https://github.com/mvakde/mdlARC",
