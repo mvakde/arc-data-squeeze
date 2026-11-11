@@ -31,7 +31,7 @@ We also keep an Open table that relaxes the rules: interesting results that brea
 | Date | Entry | Params | Beyond the rules | ARC-AGI-1 | ARC-AGI-2 | Compute per ARC-AGI-1 run |
 | --- | --- | ---: | --- | --- | --- | --- |
 | Sep 2026 | [transductARC](https://github.com/kschweig/transductARC) by Kajetan Schweighofer, built on mdlARC | 75M | Extra data: ReARC. Also scale augmentation, deterministic filters | 76\* / 83\* | 17\* / 24\* | a little over 4 H100-hours\* |
-| Nov 2026 | [Looped mdlARC v3 + ReARC](records/open/2026-11-10_looped-mdlarc-d384x6-rearc) | 19M | Same extras as transductARC | 81.38 / 88.00 | 20.14 / 32.08 | 10.6 H200-hours, ~$38 † |
+| Nov 2026 | [Looped mdlARC v3 + ReARC, scale augmentation, deterministic filters](records/open/2026-11-10_looped-mdlarc-d384x6-rearc) | 19M | Extra data: ReARC. Also scale augmentation, deterministic filters (as transductARC) | 81.38 / 88.00 | 20.14 / 32.08 | 10.6 H200-hours, ~$38 † |
 
 The extra knowledge and data pays off. Looped mdlARC v3 score increases from 70.25% on ARC-AGI-1 to 81.38%. 
 
