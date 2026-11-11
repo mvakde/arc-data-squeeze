@@ -26,7 +26,7 @@ Top-2 / oracle, %. Top-2 is the ranked score; the oracle is reported for referen
 
 ### Open
 
-We also keep an Open table that relaxes the rules: interesting results that break a rule, usually hand-written knowledge or extra data. They show what the rules hold back, and they are not records. Note: Extra data is 
+We also keep an Open table that relaxes the rules: interesting results that break a rule, usually hand-written knowledge or extra data. They show what the rules hold back, and they are not records.
 
 | Date | Entry | Params | Beyond the rules | ARC-AGI-1 | ARC-AGI-2 | Compute per ARC-AGI-1 run |
 | --- | --- | ---: | --- | --- | --- | --- |
@@ -58,7 +58,7 @@ Hand-written knowledge about ARC raises scores easily, so the rules allow only w
 | Inductive bias | Why a person has it | In the baseline |
 | --- | --- | --- |
 | **Grid layout:** each cell's position, which grid it is in, which input goes with which output, which grid is the question | A glance at the task shows it | Row-end and separator tokens; 3D rotary positions (row, column, grid); hub-and-spoke attention, where each demo attends to itself and the test input |
-| **Whole-task symmetries:** rotating or mirroring every grid of a task the same way, swapping colours the same way in every grid, and reordering the demos | A rotated or mirrored task is the same puzzle, like turning the page; a person is told the colours have no meaning outside the puzzle; demo order carries no information | All 8 rotations and reflections and random colour swaps as training augmentation, and 80 such views of each task at test time |
+| **Certain whole-task symmetries:** rotating or mirroring every grid of a task the same way, swapping colours the same way in every grid, and reordering the demos | A rotated or mirrored task is the same puzzle, like turning the page; a person is told the colours have no meaning outside the puzzle; demo order carries no information | All 8 rotations and reflections and random colour swaps as training augmentation, and 80 such views of each task at test time |
 | **Checking an answer by looking again** | A person re-checks an answer from another angle | Voting across the 80 views, then ranking the top 20 by the model's own likelihood |
 
 **Examples of what is not allowed:**
