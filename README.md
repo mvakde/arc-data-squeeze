@@ -8,6 +8,8 @@ Today's AI methods are sample-inefficient: they need far more examples than a pe
 
 The [NanoGPT slowrun](https://github.com/qlabs-eng/slowrun) is one such benchmark. It fixes 100M tokens of text and scores validation loss, a compression metric. Instead, Data Squeeze measures downstream performance: the model must solve the eval puzzles.
 
+That makes it a testbed for frontier ideas. A run takes a few GPU-hours, yet the benchmark is far from solved: the record still misses about 30% of ARC-AGI-1 and 85% of ARC-AGI-2. A trick that really helps models learn from fewer examples should show up here, unless it only helps language pretraining. Frontier labs publish many such tricks, and most have never been tried on this data. [Ideas to try](#ideas-to-try) lists some.
+
 **Dataset:** all official ARC-AGI-1 and ARC-AGI-2 public tasks, plus ConceptARC: 1,307 tasks.  
 Any architecture and any amount of compute allowed; no LLMs, pretrained weights or outside data.
 
@@ -72,6 +74,20 @@ Hand-written knowledge about ARC raises scores easily, so the rules allow only w
 - **DSLs, program search and symbolic solvers.**
 
 The maintainer decides borderline cases with the same test: would a person know this before working anything out from the grids? If you are unsure, ask in an issue before building on it.
+
+## Ideas to try
+
+Big ideas rarely set a record on day one. They first show signs of life, and the tuning comes later, so entries that don't beat the record but show something interesting are welcome too. Here is what we would like to see, with what we know so far:
+
+- **Recurrence through time and latent prediction.** Pass hidden states on to the next step, as the [full-bandwidth transformer](https://arxiv.org/abs/2608.08888) and [recirculation](https://arxiv.org/abs/2608.17981) do, or predict latents instead of tokens. In one small test, next-latent prediction lost to multi-token prediction.
+- **H-Nets with looping.** On their own, H-Nets matched or slightly beat plain transformers of equal depth. Our one attempt to combine them with looping scored 58.5 on ARC-AGI-1, against 66.25 without them.
+- **Compressed and hierarchical attention**, such as MLA, or the CSA and HCA layers of DeepSeek V4.
+- **Diffusion-style models** that refine the whole output grid together instead of writing it cell by cell.
+- **Ensembling.** Pooling the answers of five looped models raised ARC-AGI-1 from 68.38 to 73.12, though we chose the members on the eval set. Ensembling during training, such as weight averaging or distillation, hasn't been tried with loops. An ensemble's parameter count includes every member.
+- **Much deeper models.** Our gains from looping stop at ×6: looping ×8, or 12 blocks looped to 48 layers, did no better. transductARC kept gaining up to 32 layers. Making deep models train well on little data is open.
+- **Other looping schemes.** Loop the whole model, only the middle blocks (as v3 does) or only the late ones, or switch looping on partway through training.
+- **Proper hyperparameter sweeps and a modern architecture.** The baseline has never been swept properly. Try, for example, three linear-attention layers to each full-attention layer, as in Qwen3-Next and Kimi Linear, or DeepSeek's manifold-constrained hyper-connections (mHC).
+- **Wilder changes.** Anything goes if the model learns more from each example.
 
 ## Harder tracks to come
 
