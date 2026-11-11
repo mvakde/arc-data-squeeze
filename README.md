@@ -19,7 +19,7 @@ the write-up. -->
 Top-2 / oracle, %. Top-2 is the ranked score; the oracle is reported for reference.
 
 | Date | Entry | Params | ARC-AGI-1 | ARC-AGI-2 | Compute per ARC-AGI-1 run |
-| --- | --- | ---: | ---: | --- | --- | --- |
+| --- | --- | ---: | ---: | --- | --- |
 | Dec 2025 | [mdlARC v1](https://mvakde.github.io/blog/new-pareto-frontier-arc-agi/): plain transformer | 28M | 27.5\* | 2\* | 2.9 A100-hours, $1.80 |
 | Mar 2026 | [mdlARC v2](https://mvakde.github.io/blog/44-on-arc-1/): 3D RoPE, ARC-AGI-2 tasks added | 75M | 44\* | 7\* | 2 hours on an RTX 5090, $0.67 |
 | Nov 2026 | [Looped mdlARC v3](records/main/2026-11-10_looped-mdlarc-d384x6): middle blocks looped ×6, likelihood ranking | 19M | **70.25** / 79.88 | **15.14** / 20.56 | 3.7 H200-hours, ~$13 † |
