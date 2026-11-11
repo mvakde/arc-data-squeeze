@@ -1,6 +1,6 @@
 # ARC Data Squeeze
 
-**A new sample-efficiency benchmark: train from scratch on a tiny, fixed dataset (about 2M tokens) and score as high
+**A new sample-efficiency benchmark: train from scratch on a tiny, fixed dataset (~2M tokens) and score as high
 as possible on the ARC-AGI public evaluation sets.**
 
 Current SOTA: **70.25% on ARC-AGI-1 and 15.14% on ARC-AGI-2**, by looped mdlARC v3 at 19M parameters. Can we beat
@@ -29,12 +29,27 @@ Top-2 / oracle, %. Top-2 is the ranked score; the oracle is reported for referen
 
 | Date | Entry | Params | Seeds | ARC-AGI-1 | ARC-AGI-2 | Compute per ARC-AGI-1 run |
 | --- | --- | ---: | ---: | --- | --- | --- |
-| Dec 2025 | [mdlARC v1](https://mvakde.github.io/blog/new-pareto-frontier-arc-agi/): plain transformer | 28M | | 27.5\* | | 2.9 A100-hours, $1.80 |
+| Dec 2025 | [mdlARC v1](https://mvakde.github.io/blog/new-pareto-frontier-arc-agi/): plain transformer | 28M | | 27.5\* | 2\* | 2.9 A100-hours, $1.80 |
 | Mar 2026 | [mdlARC v2](https://mvakde.github.io/blog/44-on-arc-1/): 3D RoPE, ARC-AGI-2 tasks added | 75M | | 44\* | 7\* | 2 hours on an RTX 5090, $0.67 |
-| Nov 2026 | [Looped mdlARC v3](records/main/2026-11-10_looped-mdlarc-d384x6): middle blocks looped ×6, likelihood ranking | 19M | 1 | **70.25** / 79.88 | **15.14** / 20.56 | 4.9 H100-hours, ~$10 † |
+| Nov 2026 | [Looped mdlARC v3](records/main/2026-11-10_looped-mdlarc-d384x6): middle blocks looped ×6, likelihood ranking | 19M | 1 | **70.25** / 79.88 | **15.14** / 20.56 | 3.7 H200-hours, ~$13 † |
 
-\* As reported in the author's posts, not re-scored here. Costs are what the author paid, or † estimated at $2 per
-GPU-hour.
+### Open
+
+We also keep an Open table that relaxes the rules: interesting results that break a rule, usually with extra data or
+hand-written knowledge. They show what the rules hold back, and they are not records.
+
+| Date | Entry | Params | Beyond the rules | ARC-AGI-1 | ARC-AGI-2 | Compute per ARC-AGI-1 run |
+| --- | --- | ---: | --- | --- | --- | --- |
+| Sep 2026 | [transductARC](https://github.com/kschweig/transductARC) by Kajetan Schweighofer, built on mdlARC | 75M | ReARC data, scale augmentation, deterministic filters | 76\* / 83\* | 17\* / 24\* | a little over 4 H100-hours\* |
+| Nov 2026 | [Looped mdlARC v3 + ReARC](records/open/2026-11-10_looped-mdlarc-d384x6-rearc) | 19M | Same as transductARC | 81.38 / 88.00 | 20.14 / 32.08 | 10.6 H200-hours, ~$38 † |
+
+The extra knowledge pays off. Within the rules, looped mdlARC v3 scores 70.25 on ARC-AGI-1. Scale augmentation and
+deterministic filters take the same model to 71.88, and adding ReARC takes it to 81.38.
+
+\* As reported by the authors, not re-scored here. transductARC's scores are a mean over 8 seeds, with the oracle over
+48 candidates; its 8-model ensemble reports about 80 and 22. Costs are what the author paid, or † a measured H200 run
+priced at $3.60 per hour on Vast. For v3 that is a d384 ×6 run on the current code; the recorded run used older code
+(4.9 H100-hours).
 
 ## Rules
 
@@ -72,22 +87,6 @@ task. Anything a person would have to work out from the grids' contents, the mod
 
 The maintainer decides borderline cases with the same test: would a person know this before working anything out
 from the grids? If you are unsure, ask in an issue before building on it.
-
-## Open
-
-Interesting results that break a rule, usually with extra data or hand-written knowledge. They show what the rules
-hold back, and they are not records.
-
-| Date | Entry | Params | Beyond the rules | ARC-AGI-1 | ARC-AGI-2 | Compute per ARC-AGI-1 run |
-| --- | --- | ---: | --- | --- | --- | --- |
-| Sep 2026 | [transductARC](https://github.com/kschweig/transductARC) by Kajetan Schweighofer, built on mdlARC | 75M | ReARC data, scale augmentation, deterministic filters | 76\* / 83\* | 17\* / 24\* | a little over 4 H100-hours\* |
-| Nov 2026 | [Looped mdlARC v3 + ReARC](records/open/2026-11-10_looped-mdlarc-d384x6-rearc) | 19M | Same as transductARC | 81.38 / 88.00 | 20.14 / 32.08 | 10.5 H200-hours, ~$21 † |
-
-\* As reported by the author, not re-scored here: a mean over 8 seeds, with the oracle over 48 candidates. Its 8-model
-ensemble reports about 80 and 22. † Estimated at $2 per GPU-hour.
-
-The extra knowledge pays off. Within the rules, looped mdlARC v3 scores 70.25 on ARC-AGI-1. Scale augmentation and
-deterministic filters take the same model to 71.88, and adding ReARC takes it to 81.38.
 
 ## Harder tracks to come
 
