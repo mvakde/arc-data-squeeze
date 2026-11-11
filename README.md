@@ -22,7 +22,7 @@ Top-2 / oracle, %. Top-2 is the ranked score; the oracle is reported for referen
 | --- | --- | ---: | ---: | --- | --- |
 | Dec 2025 | [mdlARC v1](https://mvakde.github.io/blog/new-pareto-frontier-arc-agi/): plain transformer | 28M | 27.5\* | 2\* | 2.9 A100-hours, $1.80 |
 | Mar 2026 | [mdlARC v2](https://mvakde.github.io/blog/44-on-arc-1/): 3D RoPE, ARC-AGI-2 tasks added | 75M | 44\* | 7\* | 2 hours on an RTX 5090, $0.67 |
-| Nov 2026 | [Looped mdlARC v3](records/main/2026-11-10_looped-mdlarc-d384x6): middle blocks looped ×6, likelihood ranking | 19M | **70.25** / 79.88 | **15.14** / 20.56 | 3.7 H200-hours, ~$13 † |
+| Nov 2026 | [Looped mdlARC v3](records/main/2026-11-10_looped-mdlarc-d384x6): middle blocks looped ×6, demo pairs in context, hub-and-spoke attention, likelihood ranking | 19M | **70.25** / 79.88 | **15.14** / 20.56 | 3.7 H200-hours, ~$13 † |
 
 ### Open
 
@@ -58,7 +58,7 @@ Hand-written knowledge about ARC raises scores easily, so the rules allow only w
 | Inductive bias | Why a person has it | In the baseline |
 | --- | --- | --- |
 | **Grid layout:** each cell's position, which grid it is in, which input goes with which output, which grid is the question | A glance at the task shows it | Row-end and separator tokens; 3D rotary positions (row, column, grid); hub-and-spoke attention, where each demo attends to itself and the test input |
-| **Views that keep the puzzle:** rotations, reflections and colour permutations of the whole task, and any demo order | Turning the page or using a mirror gives the same puzzle, and a person is told that the colours carry no meaning outside the puzzle | The 8 rotations and reflections and colour permutations in training, and 80 such views at test time |
+| **Whole-task symmetries:** rotating or mirroring every grid of a task the same way, swapping colours the same way in every grid, and reordering the demos | A rotated or mirrored task is the same puzzle, like turning the page; a person is told the colours have no meaning outside the puzzle; demo order carries no information | All 8 rotations and reflections and random colour swaps as training augmentation, and 80 such views of each task at test time |
 | **Checking an answer by looking again** | A person re-checks an answer from another angle | Voting across the 80 views, then ranking the top 20 by the model's own likelihood |
 
 **Examples of what is not allowed:**
