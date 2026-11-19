@@ -13,8 +13,9 @@ That makes it a testbed for frontier ideas. A run takes a few GPU-hours, yet the
 **Dataset:** all official ARC-AGI-1 and ARC-AGI-2 public tasks, plus ConceptARC: 1,307 tasks.  
 Any architecture and any amount of compute allowed; no LLMs, pretrained weights or outside data.
 
-<!-- TODO before announcing: add a figure here, e.g. one ARC task with the record scores, or the loop animation from
-the write-up. -->
+![ARC-AGI-1 public eval score against parameters trained: looped mdlARC v3 reaches 49% at 1M and 70.25% at 19M, above HRM, TRM, CompressARC and mdlARC v1 and v2](assets/arc1-public-eval.png)
+
+*ARC-AGI-1 public eval (top-2) against parameters trained, from the [Looped mdlARC blog](https://mvakde.github.io/blog/looped-mdlarc/#fig-params3). The 81.38% point adds RE-ARC, scale augmentation and answer filters, which break the rules, so it is in the [Open table](#open), not the records.*
 
 ## Records
 
