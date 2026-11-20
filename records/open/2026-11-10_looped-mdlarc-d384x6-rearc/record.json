@@ -16,7 +16,7 @@
     "commit": "79fc7bbd8fb7cc109cc9326cb5601b436a94cc75",
     "command": "python launch_run.py --config specs/paper/rearc_and_scale/arc1_d384x6_rearc.json (arc2_d384x6_rearc.json for ARC-AGI-2)"
   },
-  "weights": null,
+  "weights": "https://github.com/mvakde/arc-data-squeeze/releases/tag/weights-2026-11",
   "declared_components": [
     "ReARC data: up to 1,000 pre-generated examples per ARC-AGI-1 training task (re-arc e5b7f1d), 129 known-bad pairs removed",
     "Scale augmentation: integer block upscaling of every grid in a training sequence, and scale views at decode",
